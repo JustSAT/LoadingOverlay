@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 34
 
     defaultConfig {
         minSdkVersion 16
@@ -34,7 +34,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     }
     ext {
         libraryVersion = '1.0.0'
@@ -90,26 +90,3 @@ artifacts {
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-// Configure gradle-bintray-plugin (for publishing releases)
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-
-    configurations = ['archives']
-    publish = true
-
-    pkg {
-        repo = 'maven'
-        name = libraryName
-        desc = libraryDescription
-        websiteUrl = siteUrl
-        issueTrackerUrl = 'https://github.com/MohamedAbulgasem/LoadingOverlay/issues'
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publicDownloadNumbers = true
-        version {
-            desc = libraryDescription
-        }
-    }
-}
